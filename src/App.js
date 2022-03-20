@@ -106,6 +106,7 @@ function App() {
       title="Staking UI"
       subTitle="Buy, Stake, Withdraw"
       extra={[
+        <Button key="2" onClick={setLoaded(false)}>Load Balance</Button>,
         <Button key="2" type="primary" onClick={claimReward}>Claim Reward</Button>,
       ]}
     >
