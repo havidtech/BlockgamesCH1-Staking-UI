@@ -6,7 +6,7 @@ import { stakerAbi } from './constants';
 
 const { Content, Footer } = Layout;
 
-const stakerAddress = "0x1DA052A5F8532c419f27EeCB4A043f56756d9Aed"
+const stakerAddress = "0x76C6f2e428eb53d7D3ab818B421EdbD50b800309";
 const provider = new ethers.providers.Web3Provider(window.ethereum)
 async function requestAccount() {
   await provider.send("eth_requestAccounts", []);
