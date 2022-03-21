@@ -7,11 +7,18 @@ import { stakerAbi } from './constants';
 const { Content, Footer } = Layout;
 
 const stakerAddress = "0x76C6f2e428eb53d7D3ab818B421EdbD50b800309";
-const provider = new ethers.providers.Web3Provider(window.ethereum)
 
-// requestAccount();
-const signer = provider.getSigner()
-const contract = new ethers.Contract(stakerAddress, stakerAbi, signer);
+let provider;
+let signer;
+let contract;
+try{
+  provider = new ethers.providers.Web3Provider(window.ethereum)
+  signer = provider.getSigner()
+  contract = new ethers.Contract(stakerAddress, stakerAbi, signer);
+}catch(e){
+  message.error("Please Install Metamask, Sign in and then reload this page");
+}
+
 
 function App() {
   // Declare state variables
