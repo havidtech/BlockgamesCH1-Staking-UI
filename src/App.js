@@ -8,10 +8,8 @@ const { Content, Footer } = Layout;
 
 const stakerAddress = "0x76C6f2e428eb53d7D3ab818B421EdbD50b800309";
 const provider = new ethers.providers.Web3Provider(window.ethereum)
-async function requestAccount() {
-  await provider.send("eth_requestAccounts", []);
-}
-requestAccount();
+
+// requestAccount();
 const signer = provider.getSigner()
 const contract = new ethers.Contract(stakerAddress, stakerAbi, signer);
 
@@ -24,8 +22,6 @@ function App() {
   const [receiver, setReceiver] = useState("");
   const [loaded, setLoaded] = useState(false);
 
-
-
   useEffect(() => {
     if(!loaded){
       async function getInfo() {
@@ -33,9 +29,13 @@ function App() {
         setStake(stake);
         setBalance(balance);
         setReward(reward);
-        setLoaded(true);
       }
-      getInfo();
+      async function requestAccount() {
+        await provider.send("eth_requestAccounts", []);
+        getInfo();
+      }
+      requestAccount();
+      setLoaded(true);
     }
   }, [loaded])
 
@@ -104,7 +104,6 @@ function App() {
     <PageHeader
       title="Staking UI"
       extra={[
-        <Button key="1" onClick={() => setLoaded(false)}>Refresh</Button>,
         <Button key="2" type="primary" onClick={claimReward}>Claim Reward</Button>,
       ]}
     >
