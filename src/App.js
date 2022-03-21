@@ -33,10 +33,9 @@ function App() {
         setStake(stake);
         setBalance(balance);
         setReward(reward);
+        setLoaded(true);
       }
       getInfo();
-
-      setLoaded(true);
     }
   }, [loaded])
 
@@ -105,7 +104,7 @@ function App() {
     <PageHeader
       title="Staking UI"
       extra={[
-        <Button key="2" onClick={setLoaded(false)}>Load Balance</Button>,
+        <Button key="1" onClick={() => setLoaded(false)}>Refresh</Button>,
         <Button key="2" type="primary" onClick={claimReward}>Claim Reward</Button>,
       ]}
     >
